@@ -1,8 +1,3 @@
-# Cabeçalho do arquivo ex4.py
-"""
-Exercício 4: "Banco de Dados" de dicionários.
-"""
-
 # Dicionário global para armazenar os usuários
 banco_usuarios = []
 
@@ -35,16 +30,12 @@ def cadastrar_usuario(campos_obrigatorios):
 
 def imprimir_usuarios(*args, **kwargs):
     """
-    Função para imprimir os dados dos usuários de acordo com as opções especificadas.
+    Função para imprimir os dados dos usuários
 
     Args:
     *args: Argumentos posicionais que podem ser nomes de usuários.
     **kwargs: Argumentos nomeados que são campos e valores de filtro.
-
-    Exemplos de chamada:
-    - imprimir_usuarios() -> Imprime todos os usuários com todas as informações.
-    - imprimir_usuarios("alberto", "joaquina", "enzo", "valentina") -> Imprime os dados dos usuários com os nomes especificados.
-    - imprimir_usuarios(campo="endereço", valor="xv de novembro", campo2="idade", valor2="20") -> Imprime os dados dos usuários que satisfazem às condições especificadas.
+    
     """
     if not args and not kwargs:
         for usuario in banco_usuarios:
@@ -75,7 +66,6 @@ def imprimir_usuarios(*args, **kwargs):
                     if satisfaz_condicoes:
                         print(usuario)
 
-# Menu principal
 campos_obrigatorios = tuple(input("Digite os campos obrigatórios para cadastro (separados por vírgula): ").split(","))
 while True:
     print("\nMenu:")

@@ -5,13 +5,12 @@
 # Verificar se há um vencedor após cada jogada
 # Continuar até que haja um vencedor ou um empate
 
-def inicializar_tabuleiro():
-    """Inicializa um tabuleiro vazio 4x4."""
-    tabuleiro = [[' ' for _ in range(4)] for _ in range(4)]
-    return tabuleiro
+def criar_tabuleiro():
+    """Inicializa um tabuleiro 4x4."""
+    return  [[' ' for _ in range(4)] for _ in range(4)]
 
 def imprimir_tabuleiro(tabuleiro):
-    """Imprime o tabuleiro."""
+    """Impressão do tabuleiro."""
     for linha in tabuleiro:
         print('|'.join(linha))
         print('-' * 9)
@@ -22,22 +21,22 @@ def realizar_jogada(tabuleiro, jogador, linha, coluna):
         tabuleiro[linha][coluna] = jogador
         return True
     else:
-        print("Essa posição já está ocupada. Tente novamente.")
+        print("Essa posição já está ocupada. Tente novamente em outra posição.")
         return False
 
 def verificar_vencedor(tabuleiro):
-    """Verifica se há um vencedor no tabuleiro."""
-    # Checa linhas
+    """Verificação se há um vencedor no tabuleiro."""
+    # Checa as linhas
     for linha in tabuleiro:
         if linha[0] != ' ' and all(x == linha[0] for x in linha):
             return linha[0]
 
-    # Checa colunas
+    # Checa as colunas
     for coluna in range(4):
         if tabuleiro[0][coluna] != ' ' and all(tabuleiro[i][coluna] == tabuleiro[0][coluna] for i in range(4)):
             return tabuleiro[0][coluna]
 
-    # Checa diagonais
+    # Checa as diagonais
     if tabuleiro[0][0] != ' ' and all(tabuleiro[i][i] == tabuleiro[0][0] for i in range(4)):
         return tabuleiro[0][0]
     if tabuleiro[0][3] != ' ' and all(tabuleiro[i][3 - i] == tabuleiro[0][3] for i in range(4)):
@@ -45,16 +44,16 @@ def verificar_vencedor(tabuleiro):
 
     return None
 
-def jogo_da_velha_4x4():
-    tabuleiro = inicializar_tabuleiro()
+def jogo_da_velha():
+    tabuleiro = criar_tabuleiro()
     jogadores = {'X': 'Jogador 1', 'O': 'Jogador 2'}
     jogador_atual = 'X'
 
     while True:
-        print(f"{jogadores[jogador_atual]}'s vez:")
+        print(f"Vez do {jogadores[jogador_atual]}:")
         imprimir_tabuleiro(tabuleiro)
-        linha = int(input("Digite o número da linha (0-3): "))
-        coluna = int(input("Digite o número da coluna (0-3): "))
+        linha = int(input("Informe o número da linha (0-3): "))
+        coluna = int(input("Informe o número da coluna (0-3): "))
 
         if 0 <= linha <= 3 and 0 <= coluna <= 3:
             if realizar_jogada(tabuleiro, jogador_atual, linha, coluna):
@@ -74,4 +73,5 @@ def jogo_da_velha_4x4():
             print("Entrada inválida. Tente novamente com valores entre 0 e 3.")
 
 if __name__ == "__main__":
-    jogo_da_velha_4x4()
+    print("---------- Bem-vindo ao jogo da velha! ----------")
+    jogo_da_velha()
